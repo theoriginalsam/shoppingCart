@@ -4,6 +4,8 @@ var mongoose = require("mongoose");
 var config = require("./config/database");
 var router = require("./Route/pages");
 var adminRouter = require("./Route/admin-pages");
+var bodyParser = require("body-parser");
+var session = require("express-session");
 
 mongoose.connect(config.database, {
   useUnifiedTopology: true,
@@ -20,6 +22,20 @@ db.once("open", function () {
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+
+// parse application/json
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+//sessions
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true },
+  })
+);
 
 app.use(express.static(path.join(__dirname, "public")));
 
