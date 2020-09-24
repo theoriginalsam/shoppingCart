@@ -18,8 +18,10 @@
   },
   "homepage": "https://github.com/theoriginalsam/shoppingCart#readme",
   "dependencies": {
+    "body": "^5.1.0",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "parser": "^0.1.4"
   }
 }
