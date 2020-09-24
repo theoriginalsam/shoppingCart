@@ -6,7 +6,7 @@ var router = require("./Route/pages");
 var adminRouter = require("./Route/admin-pages");
 var bodyParser = require("body-parser");
 var session = require("express-session");
-
+var expressValidator = require("express-validator");
 mongoose.connect(config.database, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
@@ -38,6 +38,13 @@ app.use(
 );
 
 app.use(express.static(path.join(__dirname, "public")));
+
+//messages
+app.use(require("connect-flash")());
+app.use(function (req, res, next) {
+  res.locals.messages = require("express-messages")(req, res);
+  next();
+});
 
 app.use("/", router);
 app.use("/sudo", adminRouter);
