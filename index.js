@@ -39,6 +39,25 @@ app.use(
 
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use(
+  expressValidator({
+    errorFormatter: function (param, msg, value) {
+      var namespace = param.split("."),
+        root = namespace.shift(),
+        formParam = root;
+
+      while (namespace.length) {
+        formParam += "[" + namespace.shift() + "]";
+      }
+      return {
+        param: formParam,
+        msg: msg,
+        value: value,
+      };
+    },
+  })
+);
+
 //messages
 app.use(require("connect-flash")());
 app.use(function (req, res, next) {
