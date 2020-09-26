@@ -7,6 +7,7 @@ var adminRouter = require("./Route/admin-pages");
 var bodyParser = require("body-parser");
 var session = require("express-session");
 var expressValidator = require("express-validator");
+
 mongoose.connect(config.database, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
@@ -66,7 +67,7 @@ app.use(function (req, res, next) {
 });
 
 app.use("/", router);
-app.use("/sudo", adminRouter);
+app.use("/admin", adminRouter);
 
 app.listen(config.PORT, (req, res) => {
   console.log(`Listening on PORT ${config.PORT}`);
