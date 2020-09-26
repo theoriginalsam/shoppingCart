@@ -1,9 +1,10 @@
 var express = require("express");
 var Router = express.Router();
 
-Router.get("/admin", (req, res) => {
-  res.render("index", {
-    title: "Home",
+Router.get("/add_pages", (req, res) => {
+  var title = "";
+  res.render("admin/add_pages", {
+    title: "Add a page",
   });
 });
 
