@@ -13,5 +13,24 @@ Router.get("/add_pages", (req, res) => {
     content: content,
   });
 });
+Router.post("/add_pages", (req, res) => {
+  console.log("HERE");
+  req.checkBody("title", "must have a value").notEmpty();
+  req.checkBody("content", "must have a value").notEmpty();
+  var title = req.body.title;
+  var slug = req.body.slug;
+  var content = req.body.content;
+  var errors = req.validationErrors();
+  if (errors) {
+    res.render("admin/add_pages", {
+      errors: errors,
+      title: title,
+      slug: slug,
+      content: content,
+    });
+  } else {
+    console.log("success");
+  }
+});
 
 module.exports = Router;
