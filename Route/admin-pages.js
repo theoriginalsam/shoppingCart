@@ -1,4 +1,5 @@
 var express = require("express");
+var Pages = require("../Model/pages");
 var Router = express.Router();
 Router.get("/pages", (req, res) => {
   res.send("HEY you are in right place");
@@ -29,7 +30,28 @@ Router.post("/add_pages", (req, res) => {
       content: content,
     });
   } else {
-    console.log("success");
+    Pages.findOne({ slug: slug }, (err, page) => {
+      if (page) {
+        res.render("admin/add_pages", {
+          errors: errors,
+          title: title,
+          slug: slug,
+          content: content,
+        });
+      } else {
+        var page = new Pages({
+          title,
+          slug,
+          content,
+          sorting: 0,
+        });
+        page.save((err) => {
+          if (err) {
+            return console.log("Error");
+          } else return console.log("Success");
+        });
+      }
+    });
   }
 });
 
