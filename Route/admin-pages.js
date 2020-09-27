@@ -48,7 +48,9 @@ Router.post("/add_pages", (req, res) => {
         page.save((err) => {
           if (err) {
             return console.log("Error");
-          } else return console.log("Success");
+          }
+          console.log("Successfully added");
+          res.redirect("/admin/pages");
         });
       }
     });
