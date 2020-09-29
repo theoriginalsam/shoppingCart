@@ -1,8 +1,14 @@
 var express = require("express");
 var Pages = require("../Model/pages");
 var Router = express.Router();
-Router.get("/pages", (req, res) => {
-  res.send("HEY you are in right place");
+Router.get("/", (req, res) => {
+  Pages.find({})
+    .sort({ sorting: 1 })
+    .exec((err, pages) => {
+      res.render("admin/pages", {
+        pages: pages,
+      });
+    });
 });
 Router.get("/add_pages", (req, res) => {
   var title = "";
