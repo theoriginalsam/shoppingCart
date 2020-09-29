@@ -56,7 +56,7 @@ Router.post("/add_pages", (req, res) => {
             return console.log("Error");
           }
           console.log("Successfully added");
-          res.redirect("/admin/");
+          res.redirect("/admin");
         });
       }
     });
