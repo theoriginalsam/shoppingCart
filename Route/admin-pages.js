@@ -49,7 +49,7 @@ Router.post("/add_pages", (req, res) => {
           title,
           slug,
           content,
-          sorting: 0,
+          sorting: 100,
         });
         page.save((err) => {
           if (err) {
