@@ -66,10 +66,15 @@ Router.post("/add_pages", (req, res) => {
 //get edit page
 
 Router.get("/edit_page/:slug", (req, res) => {
-  res.render("admin/edit_pages", {
-    title: title,
-    slug: slug,
-    content: content,
+  Pages.findOne({ slug: req.params.slug }, (err, page) => {
+    if (err) {
+      console.log("ERROR");
+    } else
+      res.render("admin/edit_pages", {
+        title: page.title,
+        slug: page.slug,
+        content: page.content,
+      });
   });
 });
 
