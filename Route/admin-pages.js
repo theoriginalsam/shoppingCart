@@ -66,10 +66,7 @@ Router.post("/add_pages", (req, res) => {
 //get edit page
 
 Router.get("/edit_page/:slug", (req, res) => {
-  var title = "";
-  var slug = "";
-  var content = "";
-  res.render("admin/add_pages", {
+  res.render("admin/edit_pages", {
     title: title,
     slug: slug,
     content: content,
