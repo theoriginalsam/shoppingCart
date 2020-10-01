@@ -74,6 +74,7 @@ Router.get("/edit_page/:slug", (req, res) => {
         title: page.title,
         slug: page.slug,
         content: page.content,
+        id: page._id,
       });
   });
 });
