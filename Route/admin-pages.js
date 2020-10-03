@@ -70,7 +70,7 @@ Router.get("/edit_pages/:slug", (req, res) => {
   Pages.find({ slug: req.params.slug }, (err, page) => {
     console.log(page);
     if (err) {
-      console.log("ERROR");
+      console.log("Error");
     } else
       res.render("admin/edit_pages", {
         title: page.title,
