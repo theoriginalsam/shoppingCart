@@ -68,7 +68,7 @@ Router.post("/add_pages", (req, res) => {
 Router.get("/edit_pages/:slug", (req, res) => {
   console.log(req.params.slug);
   Pages.findOne({ slug: req.params.slug }, (err, page) => {
-    console.log(page.title);
+    console.log(page);
     if (err) {
       console.log("Error");
     } else
@@ -91,34 +91,35 @@ Router.post("/edit_pages/:slug", (req, res) => {
   var content = req.body.content;
   var errors = req.validationErrors();
   if (errors) {
-    res.render("admin/add_pages", {
+    res.render("admin/edit_pages", {
       errors: errors,
       title: title,
       slug: slug,
       content: content,
+      id: id,
     });
   } else {
-    Pages.findOne({ slug: slug }, (err, page) => {
+    Pages.findOne({ slug: slug, _id: { $ne: id } }, (err, page) => {
       if (page) {
-        res.render("admin/add_pages", {
+        res.render("admin/edit_pages", {
           errors: errors,
           title: title,
           slug: slug,
           content: content,
         });
       } else {
-        var page = new Pages({
-          title,
-          slug,
-          content,
-          sorting: 100,
-        });
-        page.save((err) => {
-          if (err) {
-            return console.log("Error");
-          }
-          console.log("Successfully added");
-          res.redirect("/admin");
+        Pages.findById(id, (err, page) => {
+          page.title = title;
+          page.slug = slug;
+          page.content = content;
+
+          page.save((err) => {
+            if (err) {
+              return console.log("Error");
+            }
+            console.log("Successfully added");
+            res.redirect("/admin");
+          });
         });
       }
     });
