@@ -67,8 +67,8 @@ Router.post("/add_pages", (req, res) => {
 
 Router.get("/edit_pages/:slug", (req, res) => {
   console.log(req.params.slug);
-  Pages.find({ slug: req.params.slug }, (err, page) => {
-    console.log(page);
+  Pages.findOne({ slug: req.params.slug }, (err, page) => {
+    console.log(page.title);
     if (err) {
       console.log("Error");
     } else
