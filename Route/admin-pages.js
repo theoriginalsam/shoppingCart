@@ -82,7 +82,7 @@ Router.get("/edit_pages/:slug", (req, res) => {
 });
 
 // post edit
-Router.post("/add_pages", (req, res) => {
+Router.post("/edit_pages/:slug", (req, res) => {
   console.log("HERE");
   req.checkBody("title", "must have a value").notEmpty();
   req.checkBody("content", "must have a value").notEmpty();
