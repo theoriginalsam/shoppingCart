@@ -65,10 +65,9 @@ Router.post("/add_pages", (req, res) => {
 //get edit page
 
 Router.get("/edit_pages/:slug", (req, res) => {
-  var myD = Pages.findOne({ slug: req.params.slug });
+  var slugTou = req.params.slug;
 
-  console.log(myD);
-  Pages.findOne({ slug: req.params.slug }, (err, result) => {
+  Pages.findOne({ slug: slugTou }, (err, result) => {
     if (err) {
       console.log("Error");
     } else
