@@ -21,7 +21,6 @@ Router.get("/add_pages", (req, res) => {
   });
 });
 Router.post("/add_pages", (req, res) => {
-  console.log("HERE");
   req.checkBody("title", "must have a value").notEmpty();
   req.checkBody("content", "must have a value").notEmpty();
   var title = req.body.title;
@@ -65,19 +64,21 @@ Router.post("/add_pages", (req, res) => {
 
 //get edit page
 
-Router.get("/edit_pages/:slug", async (req, res) => {
-  console.log(req.params.slug);
-  await Pages.findOne({ slug: req.params.slug }, (err, page) => {
-    console.log(page.title);
+Router.get("/edit_pages/:slug", (req, res) => {
+  var myD = Pages.findOne({ slug: req.params.slug });
+
+  console.log(myD);
+  Pages.findOne({ slug: req.params.slug }, (err, result) => {
     if (err) {
       console.log("Error");
     } else
       res.render("admin/edit_pages", {
-        title: page.title,
-        slug: page.slug,
-        content: page.content,
-        id: page._id,
+        title: result.title,
+        slug: result.slug,
+        content: result.content,
+        id: result._id,
       });
+    console.log("THIS");
   });
 });
 
@@ -108,11 +109,11 @@ Router.post("/edit_pages/", (req, res) => {
         });
       } else {
         Pages.findById(id, (err, result) => {
-          page.title = title;
-          page.slug = slug;
-          page.content = content;
+          result.title = title;
+          result.slug = slug;
+          result.content = content;
 
-          page.save((err) => {
+          Pages.save((err) => {
             if (err) {
               return console.log("Error");
             }
