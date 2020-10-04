@@ -64,18 +64,21 @@ Router.post("/add_pages", (req, res) => {
 
 //get edit page
 
-Router.get("/edit_pages/:slug", async (req, res) => {
+Router.get("/edit_pages/:slug", (req, res) => {
   var slugTou = req.params.slug;
 
-  const Pagee = await Pages.findOne({ slug: slugTou }, (err, result) => {
-    console.log(result);
-    res.render("admin/edit_pages", {
-      title: result.title,
-      slug: "HEYEYE",
-      content: "HEY",
-      id: "12",
+  Pages.findOne({ slug: slugTou })
+    .then((err, result) => {
+      res.render("admin/edit_pages", {
+        title: "",
+        slug: "",
+        content: "",
+        id: "",
+      });
+    })
+    .catch((err) => {
+      console.log(err.message);
     });
-  });
 });
 // post edit
 Router.post("/edit_pages/", (req, res) => {
@@ -95,7 +98,7 @@ Router.post("/edit_pages/", (req, res) => {
     });
   } else {
     Pages.findOne({ slug: slug }, (err, result) => {
-      if (page) {
+      if (result) {
         res.render("admin/edit_pages", {
           errors: errors,
           title: title,
@@ -103,7 +106,7 @@ Router.post("/edit_pages/", (req, res) => {
           content: content,
         });
       } else {
-        Pages.findById(id, (err, result) => {
+        Pages.findById({ id }, (err, result) => {
           result.title = title;
           result.slug = slug;
           result.content = content;
