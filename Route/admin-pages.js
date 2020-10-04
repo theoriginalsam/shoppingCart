@@ -64,15 +64,16 @@ Router.post("/add_pages", (req, res) => {
 
 //get edit page
 
-Router.get("/edit_pages/:slug", (req, res) => {
+Router.get("/edit_pages/:slug", async (req, res) => {
   var slugTou = req.params.slug;
 
-  Pages.findOne({ slug: slugTou }, (err, result) => {
+  const Pagee = await Pages.findOne({ slug: slugTou }, (err, result) => {
     console.log(result);
     res.render("admin/edit_pages", {
-      title: "HEY",
+      title: result.title,
       slug: "HEYEYE",
       content: "HEY",
+      id: "12",
     });
   });
 });
