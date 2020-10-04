@@ -65,10 +65,10 @@ Router.post("/add_pages", (req, res) => {
 
 //get edit page
 
-Router.get("/edit_pages/:slug", (req, res) => {
+Router.get("/edit_pages/:slug", async (req, res) => {
   console.log(req.params.slug);
-  Pages.findOne({ slug: req.params.slug }, (err, page) => {
-    console.log(page);
+  await Pages.findOne({ slug: req.params.slug }, (err, page) => {
+    console.log(page.title);
     if (err) {
       console.log("Error");
     } else
@@ -82,8 +82,7 @@ Router.get("/edit_pages/:slug", (req, res) => {
 });
 
 // post edit
-Router.post("/edit_pages/:slug", (req, res) => {
-  console.log("HERE");
+Router.post("/edit_pages/", (req, res) => {
   req.checkBody("title", "must have a value").notEmpty();
   req.checkBody("content", "must have a value").notEmpty();
   var title = req.body.title;
@@ -99,7 +98,7 @@ Router.post("/edit_pages/:slug", (req, res) => {
       id: id,
     });
   } else {
-    Pages.findOne({ slug: slug, _id: { $ne: id } }, (err, page) => {
+    Pages.findOne({ slug: slug }, (err, result) => {
       if (page) {
         res.render("admin/edit_pages", {
           errors: errors,
@@ -108,7 +107,7 @@ Router.post("/edit_pages/:slug", (req, res) => {
           content: content,
         });
       } else {
-        Pages.findById(id, (err, page) => {
+        Pages.findById(id, (err, result) => {
           page.title = title;
           page.slug = slug;
           page.content = content;
