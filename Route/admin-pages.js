@@ -68,19 +68,14 @@ Router.get("/edit_pages/:slug", (req, res) => {
   var slugTou = req.params.slug;
 
   Pages.findOne({ slug: slugTou }, (err, result) => {
-    if (err) {
-      console.log("Error");
-    } else
-      res.render("admin/edit_pages", {
-        title: result.title,
-        slug: result.slug,
-        content: result.content,
-        id: result._id,
-      });
-    console.log("THIS");
+    console.log(result);
+    res.render("admin/edit_pages", {
+      title: "HEY",
+      slug: "HEYEYE",
+      content: "HEY",
+    });
   });
 });
-
 // post edit
 Router.post("/edit_pages/", (req, res) => {
   req.checkBody("title", "must have a value").notEmpty();
