@@ -1,10 +1,10 @@
 <%- include('../_layouts/header') %>
 
 <h2 class="page-title">Edit a page</h2>
-<a href="/admin" class="btn btn-primary">Back to all pages</a>
+<a href="/admin/pages" class="btn btn-primary">Back to all pages</a>
 <br /><br />
 
-<form method="post" action="/admin/edit_pages/<% _id%> ">
+<form method="post" action="/admin/pages/edit_pages/<%= id %>">
   <div class="form-group">
     <label for="">Title</label>
     <input
@@ -28,7 +28,7 @@
   </div>
 
   <div class="form-group">
-    <label for="">Contents</label>
+    <label for="">Content</label>
     <textarea
       name="content"
       class="form-control"
@@ -40,8 +40,6 @@
 <%= content %></textarea
     >
   </div>
-
-  <input type="hidden" name="id" value="<% id %> " />
 
   <button class="btn btn-default">Submit</button>
 </form>

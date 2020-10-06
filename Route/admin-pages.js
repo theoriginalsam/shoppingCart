@@ -64,19 +64,17 @@ Router.post("/add_pages", (req, res) => {
 
 //get edit page
 
-Router.get("/edit_pages/:id", (req, res) => {
-  Pages.findById(req.params.id)
-    .then((err, result) => {
-      res.render("admin/edit_pages", {
-        title: "",
-        slug: "",
-        content: "",
-        id: "",
-      });
-    })
-    .catch((err) => {
-      console.log(err.message);
+Router.get("/edit_pages/:id", function (req, res) {
+  Pages.findById(req.params.id, function (err, page) {
+    if (err) return console.log(err);
+
+    res.render("admin/edit_pages", {
+      title: page.title,
+      slug: page.slug,
+      content: page.content,
+      id: page._id,
     });
+  });
 });
 // post edit
 Router.post("/edit_pages/", (req, res) => {
