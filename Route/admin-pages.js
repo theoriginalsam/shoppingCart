@@ -64,10 +64,8 @@ Router.post("/add_pages", (req, res) => {
 
 //get edit page
 
-Router.get("/edit_pages/:slug", (req, res) => {
-  var slugTou = req.params.slug;
-
-  Pages.findOne({ slug: slugTou })
+Router.get("/edit_pages/:id", (req, res) => {
+  Pages.findById({ id: req.params.id })
     .then((err, result) => {
       res.render("admin/edit_pages", {
         title: "",
@@ -98,6 +96,7 @@ Router.post("/edit_pages/", (req, res) => {
     });
   } else {
     Pages.findOne({ slug: slug }, (err, result) => {
+      console.log(result);
       if (result) {
         res.render("admin/edit_pages", {
           errors: errors,
