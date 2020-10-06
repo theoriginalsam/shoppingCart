@@ -1,5 +1,6 @@
 var express = require("express");
 var Pages = require("../Model/pages");
+var ObjectId = require("mongodb").ObjectID;
 var Router = express.Router();
 Router.get("/", (req, res) => {
   Pages.find({})
@@ -65,7 +66,7 @@ Router.post("/add_pages", (req, res) => {
 //get edit page
 
 Router.get("/edit_pages/:id", function (req, res) {
-  Pages.findById(req.params.id, function (err, page) {
+  Pages.findById(new ObjectId(req.params.id), function (err, page) {
     if (err) return console.log(err);
 
     res.render("admin/edit_pages", {
@@ -77,12 +78,13 @@ Router.get("/edit_pages/:id", function (req, res) {
   });
 });
 // post edit
-Router.post("/edit_pages/", (req, res) => {
+Router.post("/edit_pages/:id", (req, res) => {
   req.checkBody("title", "must have a value").notEmpty();
   req.checkBody("content", "must have a value").notEmpty();
   var title = req.body.title;
   var slug = req.body.slug;
   var content = req.body.content;
+
   var errors = req.validationErrors();
   if (errors) {
     res.render("admin/edit_pages", {
@@ -103,12 +105,12 @@ Router.post("/edit_pages/", (req, res) => {
           content: content,
         });
       } else {
-        Pages.findById({ id }, (err, result) => {
+        Pages.findById(req.params.id, (err, result) => {
           result.title = title;
           result.slug = slug;
           result.content = content;
 
-          Pages.save((err) => {
+          result.save((err) => {
             if (err) {
               return console.log("Error");
             }
