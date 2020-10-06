@@ -65,7 +65,7 @@ Router.post("/add_pages", (req, res) => {
 //get edit page
 
 Router.get("/edit_pages/:id", (req, res) => {
-  Pages.findById({ id: req.params.id })
+  Pages.findById(req.params.id)
     .then((err, result) => {
       res.render("admin/edit_pages", {
         title: "",
