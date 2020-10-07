@@ -123,4 +123,12 @@ Router.post("/edit_pages/:id", (req, res) => {
   }
 });
 
+Router.get("/delete_pages/:id", (req, res) => {
+  Pages.findByIdAndRemove(req.params.id, (err, result) => {
+    if (result) {
+      console.log("Deleted" + result);
+    } else console.log("error");
+  });
+});
+
 module.exports = Router;
