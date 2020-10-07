@@ -127,6 +127,7 @@ Router.get("/delete_pages/:id", (req, res) => {
   Pages.findByIdAndRemove(req.params.id, (err, result) => {
     if (result) {
       console.log("Deleted" + result);
+      res.redirect("/admin");
     } else console.log("error");
   });
 });
