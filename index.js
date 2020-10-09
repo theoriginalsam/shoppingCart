@@ -68,6 +68,7 @@ app.use(function (req, res, next) {
 
 app.use("/", router);
 app.use("/admin", adminRouter);
+app.use("/categories");
 
 app.listen(config.PORT, (req, res) => {
   console.log(`Listening on PORT ${config.PORT}`);
