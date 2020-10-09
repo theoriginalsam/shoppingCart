@@ -128,7 +128,7 @@ Router.get("/delete_pages/:id", (req, res) => {
     if (result) {
       console.log("Deleted" + result);
       res.redirect("/admin");
-    } else console.log("error");
+    } else console.log("Error");
   });
 });
 
