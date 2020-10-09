@@ -3,7 +3,7 @@ var Categories = require("../Model/category");
 var ObjectId = require("mongodb").ObjectID;
 var Router = express.Router();
 Router.get("/", (req, res) => {
-  Categories.find({}).exec((err, categories) => {
+  Categories.find({}, (err, categories) => {
     res.render("admin/categories", {
       categories: categories,
     });
@@ -19,3 +19,4 @@ Router.get("/", (req, res) => {
 //     content: content,
 //   });
 // });
+module.exports = Router;

@@ -9,10 +9,10 @@
     </tr>
   </thead>
   <tbody>
-    <% pages.forEach(function(category){ %>
+    <% categories.forEach(function(category){ %>
     <tr id="id_<%= category._id %>" class="<%= category.slug %>">
       <td><%= category.title %></td>
-      <td><a href="/admin/edit_categories/<%= page._id %>">Edit</a></td>
+      <td><a href="/admin/edit_categories/<%= category._id %>">Edit</a></td>
       <% if (category.slug == "home") { %>
       <td></td>
       <% } else {%>
