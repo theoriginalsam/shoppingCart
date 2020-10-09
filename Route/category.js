@@ -2,13 +2,12 @@ var express = require("express");
 var Categories = require("../Model/category");
 var ObjectId = require("mongodb").ObjectID;
 var Router = express.Router();
-Router.get("/categories", (req, res) => {
-  Categories.find({})
-    .exec((err, categories) => {
-      res.render("admin/categories", {
-        categories: categories,
-      });
+Router.get("/", (req, res) => {
+  Categories.find({}).exec((err, categories) => {
+    res.render("admin/categories", {
+      categories: categories,
     });
+  });
 });
 // Router.get("/add_pages", (req, res) => {
 //   var title = "";
@@ -19,4 +18,4 @@ Router.get("/categories", (req, res) => {
 //     slug: slug,
 //     content: content,
 //   });
-});
+// });

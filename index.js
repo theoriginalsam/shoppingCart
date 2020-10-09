@@ -4,6 +4,7 @@ var mongoose = require("mongoose");
 var config = require("./config/database");
 var router = require("./Route/pages");
 var adminRouter = require("./Route/admin-pages");
+var categories = require("./Route/category");
 var bodyParser = require("body-parser");
 var session = require("express-session");
 var expressValidator = require("express-validator");
@@ -68,7 +69,7 @@ app.use(function (req, res, next) {
 
 app.use("/", router);
 app.use("/admin", adminRouter);
-app.use("/categories");
+app.use("/categories", categories);
 
 app.listen(config.PORT, (req, res) => {
   console.log(`Listening on PORT ${config.PORT}`);
