@@ -1,0 +1,47 @@
+<%- include('../_layouts/adminheader') %>
+
+<table class="table table-striped sorting">
+  <thead>
+    <tr class="home">
+      <th>Title</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% pages.forEach(function(category){ %>
+    <tr id="id_<%= category._id %>" class="<%= category.slug %>">
+      <td><%= category.title %></td>
+      <td><a href="/admin/edit_categories/<%= page._id %>">Edit</a></td>
+      <% if (category.slug == "home") { %>
+      <td></td>
+      <% } else {%>
+      <td>
+        <a
+          class="confirmDeletion"
+          href="/admin/delete_categories/<%= category._id %>"
+          >Delete</a
+        >
+      </td>
+      <% }%>
+    </tr>
+    <% }); %>
+  </tbody>
+</table>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+  $("tbody").sortable({
+    items: "tr:not('.home')",
+    placeholder: "ui-state-hightlight",
+    update: function () {
+      var ids = $("tbody").sortable("serialize");
+      var url = "/admin/pages/reorder-pages";
+
+      $.post(url, ids);
+    },
+  });
+</script>
+
+<%- include('../_layouts/adminfooter') %>
