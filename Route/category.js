@@ -10,6 +10,7 @@ Router.get("/", (req, res) => {
   });
 });
 //edit and delete are currently via database
+//and will be implemented at last
 // Router.get("/add_pages", (req, res) => {
 //   var title = "";
 //   var slug = "";
