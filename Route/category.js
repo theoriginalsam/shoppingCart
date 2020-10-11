@@ -23,7 +23,7 @@ Router.get("/add_category", (req, res) => {
   });
 });
 
-Router.post("/add_pages", (req, res) => {
+Router.post("/add_category", (req, res) => {
   req.checkBody("title", "must have a value").notEmpty();
   req.checkBody("slug", "must have a value").notEmpty();
   var title = req.body.title;
