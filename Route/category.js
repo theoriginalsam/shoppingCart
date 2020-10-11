@@ -56,7 +56,7 @@ Router.post("/add_category", (req, res) => {
             return console.log("Error");
           }
           console.log("Successfully added");
-          res.redirect("/admin/categories");
+          res.redirect("/categories");
         });
       }
     });
