@@ -11,14 +11,14 @@ Router.get("/", (req, res) => {
 });
 //edit and delete are currently via database
 //and will be implemented at last
-// Router.get("/add_pages", (req, res) => {
-//   var title = "";
-//   var slug = "";
-//   var content = "";
-//   res.render("admin/add_pages", {
-//     title: title,
-//     slug: slug,
-//     content: content,
-//   });
-// });
+Router.get("/add_category", (req, res) => {
+  var title = "";
+  var slug = "";
+  
+  res.render("admin/", {
+    title: title,
+    slug: slug,
+   
+  });
+});
 module.exports = Router;
