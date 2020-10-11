@@ -46,13 +46,12 @@ Router.post("/add_pages", (req, res) => {
         
         });
       } else {
-        var page = new Pages({
+        var category = new Categories({
           title,
           slug,
-          content,
-          sorting: 100,
+         
         });
-        page.save((err) => {
+        category.save((err) => {
           if (err) {
             return console.log("Error");
           }
