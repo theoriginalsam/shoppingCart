@@ -62,4 +62,17 @@ Router.post("/add_category", (req, res) => {
     });
   }
 });
+
+Router.get("/edit_category/slug", function (req, res) {
+  Pages.findById(new ObjectId(req.params.slug), function (err, page) {
+    if (err) return console.log(err);
+
+    res.render("admin/edit_pages", {
+      title: page.title,
+      slug: page.slug,
+      content: page.content,
+      id: page._id,
+    });
+  });
+});
 module.exports = Router;
