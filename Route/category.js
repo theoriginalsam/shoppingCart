@@ -76,3 +76,4 @@ Router.get("/edit_category/slug", function (req, res) {
   });
 });
 module.exports = Router;
+//edit and delete are currently via database
