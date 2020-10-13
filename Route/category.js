@@ -67,7 +67,7 @@ Router.get("/edit_category/slug", function (req, res) {
   Pages.findById(new ObjectId(req.params.slug), function (err, page) {
     if (err) return console.log(err);
 
-    res.render("admin/edit_c", {
+    res.render("admin/edit_category", {
       title: page.title,
       slug: page.slug,
       content: page.content,
