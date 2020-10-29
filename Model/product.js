@@ -9,8 +9,8 @@ var PageSchema = mongoose.Schema({
   slug: {
     type: String,
   },
-  content: {
-    type: String,
+  price: {
+    type: Number,
     required: true,
   },
   sorting: {
