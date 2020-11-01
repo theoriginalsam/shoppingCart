@@ -18,4 +18,4 @@ var PageSchema = mongoose.Schema({
   },
 });
 
-var Page = (module.exports = mongoose.model("Page", PageSchema));
+var Page = (module.exports = mongoose.model("Product", ProductSchema));
