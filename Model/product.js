@@ -13,6 +13,10 @@ var PageSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
+  category:{
+    type: String,
+    required: true,
+  }
   
 
 });
