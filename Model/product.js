@@ -13,9 +13,8 @@ var PageSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
-  sorting: {
-    type: Number,
-  },
+  
+
 });
 
 var Product = (module.exports = mongoose.model("Product", ProductSchema));
