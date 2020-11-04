@@ -5,9 +5,12 @@ var config = require("./config/database");
 var router = require("./Route/pages");
 var adminRouter = require("./Route/admin-pages");
 var categories = require("./Route/category");
+var adminProduct= require("./Route/products")
 var bodyParser = require("body-parser");
 var session = require("express-session");
 var expressValidator = require("express-validator");
+var fileUpload = require('express-fileupload');
+const product = require("./Model/product");
 
 mongoose.connect(config.database, {
   useUnifiedTopology: true,
@@ -41,6 +44,8 @@ app.use(
 
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use(fileUpload())
+
 app.use(
   expressValidator({
     errorFormatter: function (param, msg, value) {
@@ -70,6 +75,7 @@ app.use(function (req, res, next) {
 app.use("/", router);
 app.use("/admin", adminRouter);
 app.use("/categories", categories);
+app.use("/products", adminProduct);
 
 app.listen(config.PORT, (req, res) => {
   console.log(`Listening on PORT ${config.PORT}`);

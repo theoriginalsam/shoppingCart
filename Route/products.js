@@ -4,6 +4,8 @@ var fs = require('fs-extra')
 var resizeImg = require('resize-img')
 
 var Product = require("../Model/product");
+var Category = require("../Model/category");
+const product = require("../Model/product");
 var ObjectId = require("mongodb").ObjectID;
 
 
@@ -16,13 +18,16 @@ var Router = express.Router();
 
 
 Router.get("/", (req, res) => {
-  Pages.find({})
-    .sort({ sorting: 1 })
-    .exec((err, pages) => {
-      res.render("admin/pages", {
-        pages: pages,
-      });
-    });
+    var count
+  Product.count((err,c)=>{
+      count = c
+  })
+
+  Product.find((err,products)=>{
+      res.render("admin/products",{
+          products,count
+      })
+  })
 });
 Router.get("/add_pages", (req, res) => {
   var title = "";

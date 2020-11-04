@@ -1,0 +1,62 @@
+<%- include('../_layouts/adminheader') %>
+
+<h2 class="page-title">Products</h2>
+<a href="/admin/add_products" class="btn btn-primary">Add a new Product </a>
+<br /><br />
+
+<table class="table table-striped sorting">
+  <thead>
+    <tr class="home">
+      <th>Product</th>
+      <th>Price</th>
+      <th>Category</th>
+      <th>Image</th>
+      
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% products.forEach(function(product){ %>
+    <tr>
+      <td><%= product.title %></td>
+      <td><%= product.price %></td>
+      <td><%= product.category %></td>
+      <td>
+    <%= if(product.img==''){ %>
+      <%=  <img scr="/image/noimage.png">} %>  
+      <%= else{  %> 
+        <%=  <img scr="/product_image/<%=product._id%>/<%=product.image%>">} %> 
+
+      </td>
+      <td><a href="/admin/edit_pages/<%= page._id %>">Edit</a></td>
+      <% if (page.slug == "home") { %>
+      <td></td>
+      <% } else {%>
+      <td>
+        <a class="confirmDeletion" href="/admin/delete_pages/<%= page._id %>"
+          >Delete</a
+        >
+      </td>
+      <% }%>
+    </tr>
+    <% }); %>
+  </tbody>
+</table>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+  $("tbody").sortable({
+    items: "tr:not('.home')",
+    placeholder: "ui-state-hightlight",
+    update: function () {
+      var ids = $("tbody").sortable("serialize");
+      var url = "/admin/pages/reorder-pages";
+
+      $.post(url, ids);
+    },
+  });
+</script>
+
+<%- include('../_layouts/adminfooter') %>
