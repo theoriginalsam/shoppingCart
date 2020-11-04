@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 
-// Page Schema
-var PageSchema = mongoose.Schema({
+// Product Schema
+var ProductSchema = mongoose.Schema({
   title: {
     type: String,
     required: true,
@@ -16,7 +16,15 @@ var PageSchema = mongoose.Schema({
   category:{
     type: String,
     required: true,
+  },
+  description:{
+    type: String,
+    required: true,
+  },
+  image:{
+    type:string
   }
+
   
 
 });
