@@ -29,12 +29,10 @@
         <%=  <img scr="/product_image/<%=product._id%>/<%=product.image%>">} %> 
 
       </td>
-      <td><a href="/admin/edit_pages/<%= page._id %>">Edit</a></td>
-      <% if (page.slug == "home") { %>
-      <td></td>
-      <% } else {%>
+      <td><a href="/admin/edit_products/<%= product._id %>">Edit</a></td>
+      
       <td>
-        <a class="confirmDeletion" href="/admin/delete_pages/<%= page._id %>"
+        <a class="confirmDeletion" href="/admin/delete_product/<%= product._id %>"
           >Delete</a
         >
       </td>
@@ -47,16 +45,7 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
-  $("tbody").sortable({
-    items: "tr:not('.home')",
-    placeholder: "ui-state-hightlight",
-    update: function () {
-      var ids = $("tbody").sortable("serialize");
-      var url = "/admin/pages/reorder-pages";
 
-      $.post(url, ids);
-    },
-  });
 </script>
 
 <%- include('../_layouts/adminfooter') %>
