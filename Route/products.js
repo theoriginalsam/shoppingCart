@@ -29,15 +29,23 @@ Router.get("/", (req, res) => {
       })
   })
 });
-Router.get("/add_pages", (req, res) => {
+Router.get("/add_products", (req, res) => {
   var title = "";
-  var slug = "";
-  var content = "";
-  res.render("admin/add_pages", {
-    title: title,
-    slug: slug,
-    content: content,
-  });
+  var price = "";
+  
+  var description = ""
+
+  Category.find((err,categories)=>{
+
+    res.render('admin/add_products',{
+
+      title:title,
+      price:price,
+      description:description,
+      categories:categories
+    })
+  })
+
 });
 Router.post("/add_pages", (req, res) => {
   req.checkBody("title", "must have a value").notEmpty();
