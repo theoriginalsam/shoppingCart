@@ -24,7 +24,7 @@ Router.get("/", (req, res) => {
   })
 
   Product.find((err,products)=>{
-      res.render("admin/products",{
+      res.render("",{
           products,count
       })
   })
