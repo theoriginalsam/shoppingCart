@@ -112,6 +112,7 @@ Router.post("/add_products", (req, res) => {
 
             if (imageFile !=""){
               var image=req.files.image
+              var path = 'public/product_images/'
             }
           }
           console.log("Successfully added");
