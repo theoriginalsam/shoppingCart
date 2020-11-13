@@ -55,6 +55,7 @@ Router.post("/add_products", (req, res) => {
   var title = req.body.title;
   var price = req.body.price;
   var description = req.body.description;
+  var slug  =title.replace('/\s/g','-');
   var errors = req.validationErrors();
   if (errors) {
     Category.find((err,categories)=>{
@@ -75,7 +76,7 @@ Router.post("/add_products", (req, res) => {
           title: title,
           price: price,
           description: description,
-          
+
         });
       } else {
         var page = new Pages({
