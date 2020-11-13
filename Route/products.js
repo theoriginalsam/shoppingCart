@@ -57,14 +57,18 @@ Router.post("/add_products", (req, res) => {
   var description = req.body.description;
   var errors = req.validationErrors();
   if (errors) {
-    res.render("admin/add_pages", {
-      errors: errors,
-      title: title,
-      slug: slug,
-      content: content,
-    });
+    Category.find((err,categories)=>{
+
+      res.render('admin/add_products',{
+  
+        title:title,
+        price:price,
+        description:description,
+        categories:categories
+      })
+    })
   } else {
-    Pages.findOne({ slug: slug }, (err, page) => {
+    Product.findOne({ slug: slug }, (err, page) => {
       if (page) {
         res.render("admin/add_pages", {
           errors: errors,
