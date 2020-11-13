@@ -47,7 +47,7 @@ Router.get("/add_products", (req, res) => {
   })
 
 });
-Router.post("/add_pages", (req, res) => {
+Router.post("/add_products", (req, res) => {
   req.checkBody("title", "must have a value").notEmpty();
   req.checkBody("content", "must have a value").notEmpty();
   var title = req.body.title;
