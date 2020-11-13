@@ -119,7 +119,7 @@ Router.post("/add_products", (req, res) => {
             }
           }
           console.log("Successfully added");
-          res.redirect("/admin");
+          res.redirect("/products");
         });
       }
     });
