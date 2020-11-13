@@ -93,11 +93,26 @@ Router.post("/add_products", (req, res) => {
           description,
           price,
           categories,
-          image
+          image:imageFile
         });
-        page.save((err) => {
+        product.save((err) => {
           if (err) {
             return console.log("Error");
+          }
+          else{
+            mkdirp("public/product_images/"+product._id , (err)=>{
+              return console.log(err)
+            })
+            mkdirp("public/product_images/"+product._id+"/gallery", (err)=>{
+              return console.log(err)
+            })
+            mkdirp("public/product_images/"+product._id+"/thumbs", (err)=>{
+              return console.log(err)
+            })
+
+            if (imageFile !=""){
+              var image=req.files.image
+            }
           }
           console.log("Successfully added");
           res.redirect("/admin");
