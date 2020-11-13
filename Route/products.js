@@ -5,7 +5,7 @@ var resizeImg = require('resize-img')
 
 var Product = require("../Model/product");
 var Category = require("../Model/category");
-const product = require("../Model/product");
+
 var ObjectId = require("mongodb").ObjectID;
 
 
@@ -48,6 +48,8 @@ Router.get("/add_products", (req, res) => {
 
 });
 Router.post("/add_products", (req, res) => {
+
+  var imageFile = req.files.image !== "undefined" ? req.files.image.name: ""
   req.checkBody("title", "must have a value").notEmpty();
   req.checkBody("price", "must have a value").notEmpty();
   req.checkBody("description", "must have a value").notEmpty();
@@ -63,6 +65,7 @@ Router.post("/add_products", (req, res) => {
       res.render('admin/add_products',{
   
         title:title,
+        slug:slug,
         price:price,
         description:description,
         categories:categories
@@ -71,19 +74,26 @@ Router.post("/add_products", (req, res) => {
   } else {
     Product.findOne({ slug: slug }, (err, result) => {
       if (result) {
-        res.render("admin/add_product", {
-         
-          title: title,
-          price: price,
-          description: description,
+        Category.find((err,categories)=>{
 
-        });
+          res.render('admin/add_products',{
+      
+            title:title,
+            slug:slug,
+            price:price,
+            description:description,
+            categories:categories
+          })
+        })
+       
       } else {
-        var page = new Pages({
+        var product = new Product({
           title,
           slug,
-          content,
-          sorting: 100,
+          description,
+          price,
+          categories,
+          image
         });
         page.save((err) => {
           if (err) {
