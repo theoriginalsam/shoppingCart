@@ -58,12 +58,12 @@ Router.post("/add_products", (req, res) => {
   var title = req.body.title;
   var price = req.body.price;
   var description = req.body.description;
-  
+  var slug  =title
   var errors = req.validationErrors();
   console.log(errors)
   if (errors) {
     Category.find((err,categories)=>{
-      //console.log("Category"+ categories)
+      
 
       res.render('admin/add_products',{
   
@@ -95,11 +95,11 @@ Router.post("/add_products", (req, res) => {
       } else {
        
         var product = new Product({
-          title,
-          slug,
-          description,
-          price,
-          categories,
+          title:title,
+          slug:slug,
+          description:description,
+          price:price,
+          categories:categories,
           image:imageFile
         });
         
