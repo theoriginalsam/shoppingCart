@@ -68,13 +68,14 @@ Router.post("/add_products", (req, res) => {
       })
     })
   } else {
-    Product.findOne({ slug: slug }, (err, page) => {
-      if (page) {
-        res.render("admin/add_pages", {
-          errors: errors,
+    Product.findOne({ slug: slug }, (err, result) => {
+      if (result) {
+        res.render("admin/add_product", {
+         
           title: title,
-          slug: slug,
-          content: content,
+          price: price,
+          description: description,
+          
         });
       } else {
         var page = new Pages({
