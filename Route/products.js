@@ -58,25 +58,29 @@ Router.post("/add_products", (req, res) => {
   var title = req.body.title;
   console.log(title)
   var price = req.body.price;
+  console.log(price)
   var description = req.body.description;
+  console.log(description)
   var categories=req.body.categories
+  console.log(categories)
   var slug  =title
+  console.log(slug)
   var errors = req.validationErrors();
   console.log(errors)
-  // if (errors) {
-  //   Category.find((err,categories)=>{
+  if (errors) {
+    Category.find((err,categories)=>{
       
 
-  //     res.render('admin/add_products',{
+      res.render('admin/add_products',{
   
-  //       title:title,
-  //       slug:slug,
-  //       price:price,
-  //       description:description,
-  //       categories:categories
-  //     })
-  //   })
-  // } else {
+        title:title,
+        slug:slug,
+        price:price,
+        description:description,
+        categories:categories
+      })
+    })
+  } else {
     Product.findOne({ slug: slug }, (err, result) => {
 
       console.log(result)
@@ -134,7 +138,7 @@ Router.post("/add_products", (req, res) => {
       }
     });
   }
-);
+});
 
 //get edit page
 
