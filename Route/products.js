@@ -49,10 +49,12 @@ Router.get("/add_products", (req, res) => {
 });
 Router.post("/add_products", (req, res) => {
   req.checkBody("title", "must have a value").notEmpty();
-  req.checkBody("content", "must have a value").notEmpty();
+  req.checkBody("price", "must have a value").notEmpty();
+  req.checkBody("description", "must have a value").notEmpty();
+  req.checkBody("categories", "must have a value").notEmpty();
   var title = req.body.title;
-  var slug = req.body.slug;
-  var content = req.body.content;
+  var price = req.body.price;
+  var description = req.body.description;
   var errors = req.validationErrors();
   if (errors) {
     res.render("admin/add_pages", {
