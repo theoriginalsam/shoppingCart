@@ -50,6 +50,7 @@ Router.get("/add_products", (req, res) => {
 Router.post("/add_products", (req, res) => {
 
   var imageFile = req.files.image !== "undefined" ? req.files.image.name: ""
+  console.log(imageFile)
   req.checkBody("title", "must have a value").notEmpty();
   req.checkBody("price", "must have a value").notEmpty();
   req.checkBody("description", "must have a value").notEmpty();
