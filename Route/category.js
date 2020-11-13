@@ -29,6 +29,7 @@ Router.post("/add_category", (req, res) => {
   var title = req.body.title;
   var slug = req.body.slug;
   var errors = req.validationErrors();
+  console.log(errors)
   if (errors) {
     res.render("admin/add_category", {
       errors: errors,

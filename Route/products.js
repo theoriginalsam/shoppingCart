@@ -56,30 +56,32 @@ Router.post("/add_products", (req, res) => {
   req.checkBody("description", "must have a value").notEmpty();
   req.checkBody("categories", "must have a value").notEmpty();
   var title = req.body.title;
+  console.log(title)
   var price = req.body.price;
   var description = req.body.description;
+  var categories=req.body.categories
   var slug  =title
   var errors = req.validationErrors();
   console.log(errors)
-  if (errors) {
-    Category.find((err,categories)=>{
+  // if (errors) {
+  //   Category.find((err,categories)=>{
       
 
-      res.render('admin/add_products',{
+  //     res.render('admin/add_products',{
   
-        title:title,
-        slug:slug,
-        price:price,
-        description:description,
-        categories:categories
-      })
-    })
-  } else {
+  //       title:title,
+  //       slug:slug,
+  //       price:price,
+  //       description:description,
+  //       categories:categories
+  //     })
+  //   })
+  // } else {
     Product.findOne({ slug: slug }, (err, result) => {
 
-
+      console.log(result)
       if (result) {
-        console.log(result)
+       
         Category.find((err,categories)=>{
 
           res.render('admin/add_products',{
@@ -132,7 +134,7 @@ Router.post("/add_products", (req, res) => {
       }
     });
   }
-});
+);
 
 //get edit page
 
