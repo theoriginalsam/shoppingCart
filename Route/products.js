@@ -58,10 +58,12 @@ Router.post("/add_products", (req, res) => {
   var title = req.body.title;
   var price = req.body.price;
   var description = req.body.description;
-  var slug  =title.replace('/\s/g','-');
+  
   var errors = req.validationErrors();
+  console.log(errors)
   if (errors) {
     Category.find((err,categories)=>{
+      //console.log("Category"+ categories)
 
       res.render('admin/add_products',{
   
@@ -74,7 +76,10 @@ Router.post("/add_products", (req, res) => {
     })
   } else {
     Product.findOne({ slug: slug }, (err, result) => {
+
+
       if (result) {
+        console.log(result)
         Category.find((err,categories)=>{
 
           res.render('admin/add_products',{
@@ -88,6 +93,7 @@ Router.post("/add_products", (req, res) => {
         })
        
       } else {
+       
         var product = new Product({
           title,
           slug,
@@ -96,6 +102,7 @@ Router.post("/add_products", (req, res) => {
           categories,
           image:imageFile
         });
+        
         product.save((err) => {
           if (err) {
             return console.log("Error");
