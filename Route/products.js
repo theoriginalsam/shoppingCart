@@ -70,7 +70,7 @@ Router.post("/add_products", (req, res) => {
   if (errors) {
     Category.find((err,categories)=>{
       
-
+console.log(categories)
       res.render('admin/add_products',{
   
         title:title,
