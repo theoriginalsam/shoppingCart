@@ -56,21 +56,22 @@ Router.post("/add_products", (req, res) => {
   req.checkBody("description", "must have a value").notEmpty();
 
   var title = req.body.title;
+  console.log(req.body)
   console.log(title)
   var price = req.body.price;
-  console.log(price)
+  
   var description = req.body.description;
-  console.log(description)
+  
   var categories=req.body.categories
-  console.log(categories)
+  
   var slug  =title
-  console.log(slug)
+  
   var errors = req.validationErrors();
   console.log(errors)
   if (errors) {
     Category.find((err,categories)=>{
       
-console.log(categories)
+
       res.render('admin/add_products',{
   
         title:title,
@@ -81,6 +82,7 @@ console.log(categories)
       })
     })
   } else {
+    console.log('here')
     Product.findOne({ slug: slug }, (err, result) => {
 
       console.log(result)
