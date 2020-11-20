@@ -117,7 +117,7 @@ Router.post("/add_products", (req, res) => {
             return console.log("Error");
           }
           else{
-            mkdirp("public/product_images/"+product._id , (err)=>{
+            mkdirp(`public/product_images/${product._id}` , (err)=>{
               return console.log(err)
             })
             mkdirp("public/product_images/"+product._id+"/gallery", (err)=>{
