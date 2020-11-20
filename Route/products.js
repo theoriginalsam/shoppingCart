@@ -56,13 +56,14 @@ Router.post("/add_products", (req, res) => {
   req.checkBody("description", "must have a value").notEmpty();
 
   var title = req.body.title;
-  console.log(req.body)
-  console.log(title)
+
   var price = req.body.price;
   
   var description = req.body.description;
+ 
   
-  var categories=req.body.categories
+  var category=req.body.categories
+  console.log(category)
   
   var slug  =title
   
@@ -101,13 +102,13 @@ Router.post("/add_products", (req, res) => {
        
       } else {
        console.log("I am here")
-       console.log(categories)
+       console.log(category)
         var product = new Product({
           title:title,
           slug:title,
           description:description,
           price:price,
-          categories:categories,
+        category:category,
           image:imageFile
         });
         console.log(product)

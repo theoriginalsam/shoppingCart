@@ -18,7 +18,7 @@
     
     <div class="form-group">
         <label for="">Category</label>
-        <select name="categories" class="form-control">
+        <select name="category" class="form-control">
             <% categories.forEach(function(cat){ %>
                 <option value="<%= cat.slug %>"><%= cat.title %></option>
             <% }); %>
