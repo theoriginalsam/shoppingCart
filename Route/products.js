@@ -53,7 +53,7 @@ Router.post("/add_products", (req, res) => {
   console.log(imageFile)
   req.checkBody("title", "must have a value").notEmpty();
   req.checkBody("price", "must have a value").isDecimal();
-  req.checkBody("desc", "must have a value").notEmpty();
+  req.checkBody("description", "must have a value").notEmpty();
 
   var title = req.body.title;
   console.log(req.body)
@@ -82,7 +82,7 @@ Router.post("/add_products", (req, res) => {
     })
   } else {
     console.log('here')
-    Product.findOne({ slug: slug }, (err, result) => {
+    Product.findOne({ title: title }, (err, result) => {
 
       console.log(result)
       if (result) {
@@ -100,16 +100,17 @@ Router.post("/add_products", (req, res) => {
         })
        
       } else {
-       
+       console.log("I am here")
+       console.log(categories)
         var product = new Product({
           title:title,
-          slug:slug,
+          slug:title,
           description:description,
           price:price,
           categories:categories,
           image:imageFile
         });
-        
+        console.log(product)
         product.save((err) => {
           if (err) {
             return console.log("Error");
