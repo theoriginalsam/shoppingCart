@@ -75,7 +75,6 @@ Router.post("/add_products", (req, res) => {
       res.render('admin/add_products',{
   
         title:title,
-        slug:slug,
         price:price,
         description:description,
         categories:categories
