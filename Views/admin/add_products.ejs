@@ -4,7 +4,7 @@
 <a href="/products" class="btn btn-primary">Back to all products</a>
 <br><br>
 
-<form method="post" action="/products/add_product" enctype="multipart/form-data">
+<form method="post" action="/products/add_products" enctype="multipart/form-data">
     
     <div class="form-group">
         <label for="">Title</label>
@@ -13,7 +13,7 @@
     
     <div class="form-group">
         <label for="">Description</label>
-        <textarea name="desc" class="form-control" cols="30" rows="10" placeholder="Description"><%= desc %></textarea>
+        <textarea name="desc" class="form-control" cols="30" rows="10" placeholder="Description"><%= description %></textarea>
     </div>
     
     <div class="form-group">

@@ -53,7 +53,7 @@ Router.post("/add_products", (req, res) => {
   console.log(imageFile)
   req.checkBody("title", "must have a value").notEmpty();
   req.checkBody("price", "must have a value").isDecimal();
-  req.checkBody("description", "must have a value").notEmpty();
+  req.checkBody("desc", "must have a value").notEmpty();
 
   var title = req.body.title;
   console.log(req.body)
