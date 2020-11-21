@@ -62,7 +62,7 @@ Router.post("/add_products", (req, res) => {
   var description = req.body.description;
  
   
-  var category=req.body.categories
+  var category=req.body.category
   console.log(category)
   
   var slug  =title
@@ -103,6 +103,7 @@ Router.post("/add_products", (req, res) => {
       } else {
        console.log("I am here")
        console.log(category)
+
         var product = new Product({
           title:title,
           slug:title,
@@ -120,12 +121,12 @@ Router.post("/add_products", (req, res) => {
             mkdirp(`public/product_images/${product._id}` , (err)=>{
               return console.log(err)
             })
-            mkdirp("public/product_images/"+product._id+"/gallery", (err)=>{
-              return console.log(err)
-            })
-            mkdirp("public/product_images/"+product._id+"/thumbs", (err)=>{
-              return console.log(err)
-            })
+            // mkdirp("public/product_images/"+product._id+"/gallery", (err)=>{
+            //   return console.log(err)
+            // })
+            // mkdirp("public/product_images/"+product._id+"/thumbs", (err)=>{
+            //   return console.log(err)
+            // })
 
             if (imageFile !=""){
               var image=req.files.image
