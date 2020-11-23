@@ -118,6 +118,7 @@ Router.post("/add_products", (req, res) => {
             return console.log("Error");
           }
           else{
+            //place your directory in here
             mkdirp('directory').then(made =>
               console.log(`made directories, starting with`))
             
