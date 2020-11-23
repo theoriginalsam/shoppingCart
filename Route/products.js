@@ -133,15 +133,16 @@ Router.post("/add_products", (req, res) => {
             // })
             //some thing is wrong here 
 
-            if (imageFile !=""){
-              var image=req.files.image
+          //   if (imageFile !=""){
+          //     var image=req.files.image
 
-              var path = 'public/product_images/'+product._id+"/"+imageFile
-              image.mv(path,(err)=>{
-                console.log(err)
-              })
-            }
-          }
+          //     var path = 'public/product_images/'+product._id+"/"+imageFile
+          //     image.mv(path,(err)=>{
+          //       console.log(err)
+          //     })
+          //   }
+          // }
+          //need to understand this part
           console.log("Successfully added");
           res.redirect("/products");
         });
