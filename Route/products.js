@@ -122,15 +122,16 @@ Router.post("/add_products", (req, res) => {
             mkdirp('directory').then(made =>
               console.log(`made directories, starting with`))
             
-            mkdirp(`` , (err)=>{
-              return console.log("here is error")
-            })
-            mkdirp("public/product_images/"+product._id+"/gallery", (err)=>{
-              return console.log(err)
-            })
-            mkdirp("public/product_images/"+product._id+"/thumbs", (err)=>{
-              return console.log(err)
-            })
+            // mkdirp(`` , (err)=>{
+            //   return console.log("here is error")
+            // })
+            // mkdirp("public/product_images/"+product._id+"/gallery", (err)=>{
+            //   return console.log(err)
+            // })
+            // mkdirp("public/product_images/"+product._id+"/thumbs", (err)=>{
+            //   return console.log(err)
+            // })
+            //some thing is wrong here 
 
             if (imageFile !=""){
               var image=req.files.image
