@@ -118,7 +118,7 @@ Router.post("/add_products", (req, res) => {
             return console.log("Error");
           }
           else{
-            mkdirp('pics').then(made =>
+            mkdirp('directory').then(made =>
               console.log(`made directories, starting with`))
             
             mkdirp(`` , (err)=>{
